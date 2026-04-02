@@ -18,7 +18,7 @@ const app = express();
 // =====================
 const allowedOrigins = [
   "http://localhost:5173",
-  "sneaker-store-black.vercel.app"
+  "https://sneaker-store-black.vercel.app"
 ];
 
 app.use((req, res, next) => {
