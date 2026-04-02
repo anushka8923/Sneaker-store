@@ -9,12 +9,9 @@ export default function ProductDetails() {
   //  fetch single product
   const loadProduct = async () => {
     try {
-      const res = await api.get("/products"); 
+      const res = await api.get(`/products/${id}`);
+      setProduct(res.data);
       
-      //  find product by id
-      const found = res.data.find((p) => p._id === id);
-
-      setProduct(found);
     } catch (err) {
       console.error("Error fetching product:", err);
     }

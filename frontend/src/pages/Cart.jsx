@@ -27,7 +27,7 @@ export default function Cart() {
   // ❌ Remove item
   const handleRemove = async (productId) => {
     try {
-      await api.delete(`/cart/remove/${userId}/${productId}`);
+      await api.delete(`/api/cart/remove/${userId}/${productId}`);
       loadCart();
     } catch (err) {
       console.error("Error removing item:", err);
@@ -39,7 +39,7 @@ export default function Cart() {
     if (quantity < 1) return;
 
     try {
-      await api.put("/cart/update", {
+      await api.put("/api/cart/update", {
         userId,
         productId,
         quantity,
