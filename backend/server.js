@@ -14,33 +14,35 @@ dotenv.config({ path: "./.env" });
 const app = express();
 
 // =====================
-// ✅ CORS CONFIG (FINAL - STABLE)
+// PORT
+// =====================
+const PORT = process.env.PORT || 8000;
+
+// =====================
+// ✅ CORS CONFIG (FIXED)
 // =====================
 const allowedOrigins = [
   "http://localhost:5173",
   "https://sneaker-store-black.vercel.app"
 ];
 
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
 
-  // Debug logs (optional but helpful)
-  console.log("Origin:", origin);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
-  if (allowedOrigins.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin);
-  }
-
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-
-  next();
-});
+// Handle preflight requests
+app.options("*", cors());
 
 // =====================
 // MIDDLEWARE
@@ -77,7 +79,7 @@ connectDB();
 // =====================
 // SERVER START
 // =====================
-
+// const PORT = process.env.PORT || 8000;
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
