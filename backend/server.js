@@ -18,7 +18,7 @@ const app = express();
 // =====================
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://sneaker-store-frontend.onrender.com" // ⚠️ replace with your real frontend URL
+  "sneaker-store-black.vercel.app"
 ];
 
 app.use((req, res, next) => {
