@@ -58,11 +58,6 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/address", addressRoutes);
 app.use("/api/order", orderRoutes);
 
-// Test route
-app.get("/", (req, res) => {
-  res.send("API is running...");
-});
-
 // =====================
 // DB CHECK
 // =====================
