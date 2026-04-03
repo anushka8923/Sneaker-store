@@ -22,7 +22,6 @@ const PORT = process.env.PORT || 8000;
 // ✅ CORS CONFIG (FIXED)
 // =====================
 const allowedOrigins = [
-  "http://localhost:5173",
   "https://sneaker-store-black.vercel.app"
 ];
 
