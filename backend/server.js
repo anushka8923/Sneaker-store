@@ -21,10 +21,11 @@ const PORT = process.env.PORT || 8000;
 // =====================
 // ✅ CORS CONFIG (FIXED)
 // =====================
+
 const allowedOrigins = [
+  "http://localhost:5173",
   "https://sneaker-store-black.vercel.app"
 ];
-
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin) return callback(null, true);
@@ -40,8 +41,6 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
-// Handle preflight requests
-app.options("*", cors());
 
 // =====================
 // MIDDLEWARE
